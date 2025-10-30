@@ -11,7 +11,7 @@ import string
 import numpy as np
 import diptest
 
-from .. import compound 
+from PyVaspTools import compound
 
 
 periodic_table = [

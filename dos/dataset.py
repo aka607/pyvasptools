@@ -11,7 +11,7 @@ import string
 import numpy as np
 import diptest
 
-from compound import * 
+from .. import compound 
 
 
 periodic_table = [

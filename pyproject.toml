@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "PyVaspTools"
-version = "0.0.1"
+version = "0.0.2"
 dependencies = [
     "setuptools >= 77.0.3", 
     "py4vasp >= 0.10.1",

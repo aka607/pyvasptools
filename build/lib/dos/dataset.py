@@ -86,7 +86,7 @@ def pdos_orbital(axes, ith_d, energies, calc, d_orbitals, linecolor, dip_dataset
 
                     
 
-def plot_pdos_modified(d_elements, d_orbitals, *args, **kwargs):
+def plot_pdos_modified(d_elements, d_orbitals, path_to_fig, *args, **kwargs):
     '''
     Plots the total and partial DOS for multiple Datasets on the same figure. The Datasets to be plotted are provided in *args. It is recommended to have a maximum of 2 Datasets (*args) to prevent plot overload. 
     In addition to the total DOS plotted in the first row, the pDOS is plotted separately for each of the elements in d_elements (keys) which has its own subplot numbered according to the corresponding values. 
@@ -107,9 +107,8 @@ def plot_pdos_modified(d_elements, d_orbitals, *args, **kwargs):
     ''' 
     y_lim = kwargs.get("y_lim")         # tuple of tuples 
     x_lim = kwargs.get("x_lim")         # tuple of tuples 
-    labels = kwargs.get("labels", tuple(list("" for i in range(1, len(args)+1))))       # tuple of dataset names 
-    plot_name = kwargs.get("plot_name", "") 
-    path_to_fig = kwargs.get("path_to_fig", ".")  
+    labels = kwargs.get("labels", tuple(list(str(i) for i in range(1, len(args)+1))))       # tuple of dataset names 
+    plot_name = kwargs.get("plot_name")   
 
 
     plt.rcParams.update({

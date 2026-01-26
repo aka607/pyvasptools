@@ -1,0 +1,16 @@
+Metadata-Version: 2.4
+Name: PyVaspTools
+Version: 0.0.2
+Author-email: Agnes Katai <agneskatai6@gmail.com>
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: setuptools>=77.0.3
+Requires-Dist: py4vasp>=0.10.1
+Requires-Dist: pymatgen>=2025.5.1
+Requires-Dist: matplotlib>=3.10.1
+Requires-Dist: numpy>=1.26.4
+Requires-Dist: pandas>=2.2.3
+Requires-Dist: diptest>=0.9.0
+Requires-Dist: vasppy>=0.7.1.0
+Dynamic: license-file

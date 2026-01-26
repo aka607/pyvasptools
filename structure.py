@@ -134,7 +134,7 @@ class Dataset:
         Effect: mutates self 
         '''
         valid_colors = list(mcolors.CSS4_COLORS.keys())
-        linestyles_plt = ['solid', 'dotted', 'dashed', 'dashdot']
+        linestyles_plt = ['-', '--', 'solid', 'dotted', 'dashed', 'dashdot']
 
    
         self.path = path

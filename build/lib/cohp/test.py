@@ -21,6 +21,7 @@ updated_bonds_list = COHP_plots(main_path, times, bonds, label=True, fig_name='N
 plot_bond_lengths('/Users/agneskatai/Desktop/Spring 2025/Figures/COHP/NbTaMoWV/covalent_bonds', times, updated_bonds_list, alloy_name='NbTaMoWV')
 
 
+
 # # plot only specific covalent bonds < 2.0 Angstroms specified in bonds dictionary
 # # H2O-NbTaMoW-FLiBe @ 40ps - 1 covalent bond forms 
 main_path = '/Users/agneskatai/cluster_data/Narval_test/H2O/NbTaMoW/100'
@@ -39,32 +40,5 @@ bonds = [Bond('V119', 'O1', 'purple'), Bond('V120', 'F92', 'green'), Bond('Nb103
 
 updated_bonds_list = COHP_plots(main_path, times, bonds, label=True, fig_name='NbTaMoWV-H2O', fig_path='/Users/agneskatai/Desktop/Spring 2025/Figures/COHP/NbTaMoWV-H2O/covalent_bonds')
 plot_bond_lengths('/Users/agneskatai/Desktop/Spring 2025/Figures/COHP/NbTaMoWV-H2O/covalent_bonds', times, updated_bonds_list, alloy_name='NbTaMoWV-H2O')
-
-
-# # plot only specific covalent bonds < 2.0 Angstroms specified in bonds dictionary
-# # H2O-NbTaMoWV-FLiBe @ 30ps - 1 covalent bond forms 
-main_path = '/Users/agneskatai/cluster_data/Narval_test/H2O/NbTaMoW/100_v2'
-times = [10]
-bonds = [Bond('Ta158', 'F63', 'purple'), Bond('Ta161', 'F84', 'green')]
-
-
-# updated_bonds_list = COHP_plots(main_path, times, bonds, label=False, fig_name='NbTaMoW-v2-H2O', fig_path='/Users/agneskatai/Desktop/Spring 2025/Figures/COHP/NbTaMoW-v2/covalent_bonds')
-# print(updated_bonds_list)
-# plot_bond_lengths('/Users/agneskatai/Desktop/Spring 2025/Figures/COHP/NbTaMoW-v2/covalent_bonds', times, updated_bonds_list, alloy_name='NbTaMoW-v2-H2O')
-
-
-
-
-# plot only specific covalent bonds < 2.0 Angstroms specified in bonds dictionary
-# H2O-NbTaMoWV-FLiBe @ 30ps - 1 covalent bond forms 
-main_path = '/Users/agneskatai/cluster_data/Narval_test/H2O/NbTaMoWV/100_v2'
-times = [10]
-bonds = [Bond('V133', 'F59', 'purple'), Bond('V132', 'F101', 'green')]
-
-
-# updated_bonds_list = COHP_plots(main_path, times, bonds, label=False, fig_name='NbTaMoWV-v2-H2O', fig_path='/Users/agneskatai/Desktop/Spring 2025/Figures/COHP/NbTaMoWV-v2/covalent_bonds')
-# print(updated_bonds_list)
-# plot_bond_lengths('/Users/agneskatai/Desktop/Spring 2025/Figures/COHP/NbTaMoWV-v2/covalent_bonds', times, updated_bonds_list, alloy_name='NbTaMoWV-v2-H2O')
-
 
 

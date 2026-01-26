@@ -1,0 +1,8 @@
+setuptools>=77.0.3
+py4vasp>=0.10.1
+pymatgen>=2025.5.1
+matplotlib>=3.10.1
+numpy>=1.26.4
+pandas>=2.2.3
+diptest>=0.9.0
+vasppy>=0.7.1.0

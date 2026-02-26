@@ -50,7 +50,7 @@ plot_pdos_modified(d, {'d': 'solid', 'p': 'dashed', 's': 'dotted'}, NbTaMoW, x_l
 
 # Test 3 - BCC NbTaMoW + FLiBe
 d = {'Nb': 1, 'Ta': 2, 'Mo': 3, 'W': 4, 'F': 5, 'O': 6}
-times = [10]
+times = [10, 30]
 pure_metal_path = "/Users/agneskatai/cluster_data/Narval_test/H2O/NbTaMoW/pure_metal"
 h20_path = "/Users/agneskatai/cluster_data/Narval_test/H2O/NbTaMoW/100_v2"
 
@@ -59,7 +59,7 @@ calc_DOS_H2O(times, h20_path, pure_metal_path, d, "NbTaMoW")
 
 # BCC NbTaMoWV + FLiBe
 d = {'Nb': 1, 'Ta': 2, 'Mo': 3, 'W': 4, 'V': 5, 'F': 6, 'O': 7}
-times = [10]
+times = [10, 30] 
 pure_metal_path = "/Users/agneskatai/cluster_data/Narval_test/H2O/NbTaMoWV/pure_metal"
 h20_path = "/Users/agneskatai/cluster_data/Narval_test/H2O/NbTaMoWV/100_v2"
 

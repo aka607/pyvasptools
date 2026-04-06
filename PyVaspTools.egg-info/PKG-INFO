@@ -1,8 +1,8 @@
 Metadata-Version: 2.4
-Name: PyVaspTools
-Version: 0.0.2
+Name: pyvasptools
+Version: 0.0.4
 Author-email: Agnes Katai <agneskatai6@gmail.com>
-Requires-Python: >=3.11
+Requires-Python: >=3.10.14
 Description-Content-Type: text/markdown
 License-File: LICENSE
 Requires-Dist: setuptools>=77.0.3

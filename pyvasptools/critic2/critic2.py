@@ -1,6 +1,6 @@
+import os
 import matplotlib.pyplot as plt
 import numpy as np
-from PyVaspTools.structure import *
 
 def plot_critic(criticout, *args):
     '''
@@ -51,7 +51,7 @@ def plot_critic(criticout, *args):
    
 
 
-def plot_critic_over_timesteps(path, timesteps, *args, output_dir='.', plot_name='critic2'):
+def plot_critic_over_timesteps(path, timesteps, *args, plot_path='./'):
     '''
     Plots the number of valence electrons on a given atom provided in *args at each time point in timesteps. The number of valence electrons 
     at a given timepoint is normalized to the initial number of valence electrons at time 0 ps. 
@@ -121,7 +121,7 @@ def plot_critic_over_timesteps(path, timesteps, *args, output_dir='.', plot_name
     fig.legend(loc='outside right upper')  # Center of the plot
     axes.set_yticks(np.arange(-1, 1, 0.2))  # from 0 to 30 in steps of 5
     plt.show()
-    fig.savefig(f'{output_dir}/{plot_name}_critic.png')
+    fig.savefig(f'{plot_path}_critic.png')
 
 
 

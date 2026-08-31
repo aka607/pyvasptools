@@ -106,7 +106,7 @@ def plot_specific_bonds_from_dataset(cp, data, cohp_path, custom_bonds, upgraded
     return cp, data, upgraded_bonds_list
 
 
-def plot_specific_bonds(custom_bonds, *args, annotation='', plot_name='COHP_plot'):
+def plot_specific_bonds(custom_bonds, *args, annotation='', fig_path='./'):
     '''
     Generates COHP(e) plots for a specific set of bonds in custom_bonds that are listed in the ICOHPLIST.lobster file contained in the paths provided in *args. 
     By default, the plots are not sequentially labelled with the designated timepoints and the plot name is COHP_plot. By default, the atoms in Bond 
@@ -116,7 +116,6 @@ def plot_specific_bonds(custom_bonds, *args, annotation='', plot_name='COHP_plot
     
     plot_specific_bonds(dictof Bond, Str, Str, Str, Str) -> (dictof Bond)
     '''
-    fig, axes = plt.subplots(nrows=1, ncols=1, figsize=(6, 4), sharey=True)
     cp = CohpPlotter()
     data = {'COHP#': [], 'atom1': [], 'atom2': [], 'bondlength': [], 'icohp_up': [], 'icohp_down': []}
 
@@ -127,8 +126,12 @@ def plot_specific_bonds(custom_bonds, *args, annotation='', plot_name='COHP_plot
         
         cp, data, upgraded_bonds_list = plot_specific_bonds_from_dataset(cp, data, path, custom_bonds, upgraded_bonds_list)
     
-    if len(data['COHP#']) != 0:
-        x = cp.get_plot(ylim = [-10, 6], integrated=False)
+    if len(data['COHP#']) == 0:
+        print(f"No matching bonds found for {fig_path}; skipping plot.")
+        return upgraded_bonds_list
+
+    x = cp.get_plot(ylim = [-10, 6], integrated=False)
+    if True:
         lines = x.get_lines()
         
         i = 0 
@@ -160,10 +163,10 @@ def plot_specific_bonds(custom_bonds, *args, annotation='', plot_name='COHP_plot
     fig = x.figure  # get the figure from the Axes object
     fig.subplots_adjust(left=0.14, bottom=0.14, right=0.92, top=0.92)
     fig.text(0.82, 0.94, annotation, fontsize=35, color='black')
-    fig.savefig(f'{plot_name}_COHP(e)', dpi=300, bbox_inches='tight')
+    fig.savefig(f'{fig_path}_COHP(e)', dpi=300, bbox_inches='tight')
 
     # Save the datasets as .csv file in the same folder 
     df = pd.DataFrame(data)
-    df.to_csv(f'{plot_name}_COHP_data.csv')
+    df.to_csv(f'{fig_path}_COHP_data.csv')
 
     return upgraded_bonds_list

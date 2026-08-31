@@ -1,11 +1,11 @@
-from cohp.COHP_plot import * 
-from PyVaspTools.structure import int_to_roman
+from pyvasptools.cohp.COHP_plot import *
+from pyvasptools.dataset import int_to_roman
 import matplotlib.pyplot as plt
 import numpy as np
 
 
 
-def COHP_plots(main_path, times, custom_bonds, label=False, fig_name='', fig_path='.'):
+def COHP_plots(main_path, times, custom_bonds, label=False, fig_path='./'):
     '''
     Generates COHP(e) plots for a specific set of bonds in custom_bonds that are listed at least once in any ICOHPLIST.lobster file as having a length of < 2 Angstroms. The main_path directory contains all data from electronic analyses 
     conducted at each time in times, i.e., f'{main_path}/{t}ps/COHP-1-2' and f'{main_path}/{t}ps/COHP-2-3'. By default, the plots are not sequentially labelled with the designated timepoints 
@@ -25,13 +25,13 @@ def COHP_plots(main_path, times, custom_bonds, label=False, fig_name='', fig_pat
         else:
             annotation = ''
         
-        upgraded_bonds_list = plot_specific_bonds(custom_bonds, path_1_2, path_2_3, annotation=annotation, plot_name=f'{fig_path}/{fig_name}_{t}ps')
+        upgraded_bonds_list = plot_specific_bonds(custom_bonds, path_1_2, path_2_3, annotation=annotation, fig_path=f'{fig_path}_{t}ps')
 
     return upgraded_bonds_list
 
 
 
-def plot_bond_lengths(read_csv_path, times, bonds, spin_up=True, alloy_name='', fig_path=''):
+def plot_bond_lengths(read_csv_path, times, bonds, spin_up=True, file_name=''):
     '''
     Plots the bond length and ICOHP evolution with times for the specific bonds provided. It is recommended to plot in VESTA format and be consistent with the AtomID formatting.
 
@@ -65,7 +65,7 @@ def plot_bond_lengths(read_csv_path, times, bonds, spin_up=True, alloy_name='', 
 
     for t in times:
 
-        dataset = pd.read_csv(f'{read_csv_path}/{alloy_name}_{t}ps_COHP_data.csv')
+        dataset = pd.read_csv(f'{read_csv_path}_{t}ps_COHP_data.csv')
         metal_arr = dataset.iloc[:, 3].values
 
         for bond in bonds:
@@ -110,7 +110,7 @@ def plot_bond_lengths(read_csv_path, times, bonds, spin_up=True, alloy_name='', 
     axes[1].set_xlabel("Time (ps)")
     axes[1].set_ylabel('ICOHP (eV)')
 
-    fig.savefig(f'{read_csv_path}/{alloy_name}_COHP_plot_all_times')
+    fig.savefig(f'{file_name}_COHP_plot_all_times')
 
     fig.subplots_adjust(left=0.07, right=0.85, wspace=0.25)  # default left ~0.125
     plt.show()

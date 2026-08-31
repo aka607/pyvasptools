@@ -261,7 +261,7 @@ def plot_pdos_modified(elements, d_orbitals, *dos_datasets, **kwargs):
     axes[-1].tick_params(labelbottom=True)
     fig.supylabel("Density of States (1/eV)", fontsize=122)
 
-    fig.savefig(fname=f'{path_to_fig}/{plot_name}_pDOS.pdf', format='pdf', dpi=300, bbox_inches='tight')
+    fig.savefig(path_to_fig, dpi=300, bbox_inches='tight')
 
     return dip_results
 

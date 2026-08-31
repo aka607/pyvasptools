@@ -35,8 +35,10 @@ def rdf(datasets, *args, same_plot=True, total_RDF=False, **kwargs):
     'axes.labelsize': 14,
     'legend.fontsize': 12,      # use 67 for FLiBe and 61 for FLiBe + H2O      
 })
-    
-    if not same_plot:
+
+    if same_plot:
+        fig, axes = plt.subplots(figsize=(10, 8))      
+    else:
         fig, axes = plt.subplots(
         nrows=len(datasets),
         ncols=1,
@@ -62,34 +64,34 @@ def rdf(datasets, *args, same_plot=True, total_RDF=False, **kwargs):
             else:
                 rdf = RadialDistributionFunction(structures=[structure], indices_i=list(range(len(structure))), indices_j=list(range(len(structure))))
 
-            if not same_plot:
+            if same_plot:
+                axes.plot(rdf.r, rdf.smeared_rdf(), color=dataset.lc, linestyle=dataset.ls, label=f'total - {dataset.label}')
+            
+            else:
                 axes[i].xaxis.set_major_locator(ticker.MultipleLocator(1))  # major ticks every 1 unit
                 axes[i].plot(rdf.r, rdf.smeared_rdf(), color=dataset.lc, linestyle=dataset.ls, label=f'total - {dataset.label}')
                 axes[i].legend()
-            else:
-                plt.plot(rdf.r, rdf.smeared_rdf(), color=dataset.lc, linestyle=dataset.ls, label=f'total - {dataset.label}')
-
+                
         for bond in args:
             rdf_ij = RadialDistributionFunction.from_species_strings(structures=[structure], 
                                         species_i=bond.atom1,
                                         species_j=bond.atom2)
             
-            if not same_plot:
+            if same_plot:
+                axes.plot(rdf_ij.r, rdf_ij.smeared_rdf(), color = bond.colour, linestyle=dataset.ls, label=f'{bond.bond_label} - {dataset.label}')
+
+            else:
                 axes[i].xaxis.set_major_locator(ticker.MultipleLocator(1))  # major ticks every 1 unit
                 axes[i].plot(rdf_ij.r, rdf_ij.smeared_rdf(), color = bond.colour, linestyle=dataset.ls, label=f'{bond.bond_label} - {dataset.label}')
                 axes[i].legend()
-            else:
-                plt.plot(rdf_ij.r, rdf_ij.smeared_rdf(), color = bond.colour, linestyle=dataset.ls, label=f'{bond.bond_label} - {dataset.label}')
-
 
     if same_plot:
-        plt.xticks(range(0, 11))   # integer tick positions from min to max
-        plt.xlabel('r (Å)')
-        plt.ylabel('RDF')
-        plt.legend()
-        plt.savefig(f'{fig_name}.pdf', bbox_inches='tight')
-        plt.show()
+        axes.set_xticks(range(0, 11))   # integer tick positions from min to max
+        axes.set_xlabel('r (Å)')
+        axes.set_ylabel('RDF')
+        axes.legend()
+        fig.savefig(fname=fig_name, dpi=300, bbox_inches='tight')
     else:
         fig.supylabel('RDF')
         axes[-1].set_xlabel("r (Å)")
-        fig.savefig(fname=f'{fig_name}.pdf', format='pdf', dpi=300, bbox_inches='tight')
+        fig.savefig(fname=fig_name, dpi=300, bbox_inches='tight')

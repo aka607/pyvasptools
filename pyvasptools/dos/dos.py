@@ -171,21 +171,30 @@ def pdos_orbital(axes, elements_to_plot, energies, calc, d_orbitals, linecolor, 
                     
 
 def plot_pdos_modified(elements, d_orbitals, *dos_datasets, **kwargs):
-    '''
-    Plots the total and partial DOS for multiple Datasets on the same figure. The Datasets to be plotted are provided in *args. It is recommended to have a maximum of 2 Datasets (*args) to prevent plot overload. 
-    In addition to the total DOS plotted in the first row, the pDOS is plotted separately for each of the elements in d_elements (keys) which has its own subplot numbered according to the corresponding values. 
+    """
+    Plots the total and partial DOS for multiple Datasets on the same figure.
 
-    plot_pdos_modified: list[str] dict[str][str] Dataset -> None 
+    The Datasets to be plotted are provided in *args. It is recommended to have a
+    maximum of 2 Datasets (*args) to prevent plot overload. In addition to the
+    total DOS plotted in the first row, the pDOS is plotted separately for each of
+    the elements in d_elements (keys) which has its own subplot numbered according
+    to the corresponding values.
 
-    - elements is a list of elements for which you wish to plot orbital-resolved PDOS curves. 
-    - d_orbitals has orbital names as keys and the corresponding matplotlib linestyles as values
+    elements : list of str
+        A list of elements for which you wish to plot orbital-resolved PDOS curves.
+    d_orbitals : dict of str to str
+        Orbital names as keys and the corresponding matplotlib linestyles as values.
+    *dos_datasets : Dataset
+        Dataset objects where a Dataset must contain a VASP density of states calculation.
 
-    Example:
+    plot_pdos_modified: list[str] dict[str][str] Dataset -> None
+
+    Examples:
         NbTaMoW = Dataset(path="/Users/agneskatai/cluster_data/Narval_test/H2O/NbTaMoW/100_v2/30ps/DOS", lc="blue", ls="solid", label='')
         NbTaMoWV = Dataset(path="/Users/agneskatai/cluster_data/Narval_test/H2O/NbTaMoWV/100_v2/30ps/DOS", lc="red", ls="solid", label='V')
 
         plot_pdos_modified(elements, {'d': 'solid', 'p': 'dashed', 's': 'dotted'}, NbTaMoW, NbTaMoWV, x_lim=(-10, 10), y_lim=(((-5, 100),) + ((-1, 20),) * 4 + ((-5, 50),) + ((-1, 5),)), labels=("", "- FLiBe"), plot_name='NbTaMoW_vs_NbTaMoWV')
-    ''' 
+    """
     y_lim = kwargs.get("y_lim")         # tuple of tuples 
     x_lim = kwargs.get("x_lim")         # tuple of tuples 
     dataset_labels = kwargs.get("labels", tuple(list("" for i in range(1, len(dos_datasets)+1))))       # tuple of dataset label 

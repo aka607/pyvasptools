@@ -11,7 +11,7 @@ def rdf(datasets, *args, same_plot=True, total_RDF=False, **kwargs):
     distribution atom is atom2 in the Bond. The bond colour needs to also be defined in the Bond. 
 
     datasets : list[Dataset]
-        One or more Dataset objects containing vasp output files 
+        One or more Dataset objects containing vasp output files. The dataset must contain the structre file POSCAR
     args : Bonds, optional
         Bonds for which to plot the RDF 
     same_plot : bool, optional

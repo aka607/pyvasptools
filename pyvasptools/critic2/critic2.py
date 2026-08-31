@@ -3,16 +3,21 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def plot_critic(criticout, *args):
-    '''
-    Returns a dictionary with rho values calculated via critic2 for all Atom IDs listed as *args at a given timestep. criticout_path is the directory that contains
-    the critic2 output files at a given timestep. 
-    
-    plot_critic(Str, Str, Str) -> (dictof Str Float)
+    """
+    Returns a dictionary with rho values calculated via critic2 for all Atom IDs
+    listed as *args at a given timestep.
+
+    criticout : str
+        Path to the critic2 output file for a given timestep.
+    *args : str
+        Atom IDs to look up. Atom IDs must be in VESTA format (out of the total
+        number of each element type).
+
+    plot_critic: Str Str -> (dictof Str Float)
+
     Requires:
-        - criticout is the path to the Critic2 output file for a given timestep. 
-        - *args must contain valid Atom IDs in VESTA format (out of the total number of each element type)
-        - current_element must be the first element listed in the critic2 output file 
-    '''
+        - current_element must be the first element listed in the critic2 output file.
+    """
     criticout = open(criticout)
     L = criticout.readlines()
 
@@ -56,11 +61,11 @@ def plot_critic_over_timesteps(path, timesteps, *args, plot_path='./'):
     Plots the number of valence electrons on a given atom provided in *args at each time point in timesteps. The number of valence electrons 
     at a given timepoint is normalized to the initial number of valence electrons at time 0 ps. 
 
-    args is a list of Atom IDs. Atom IDs must be in VESTA format (out of the total number of each element type). 
+    path is the parent directory of the time series datasets (10ps, 20ps, 30ps, etc.).
+
+    args is a list of Atom IDs. Atom IDs must be in VESTA format (out of the total number of each element type).
 
     plot_critic_over_timesteps(Str, (listof Nat), Str, Bool, Str) -> None 
-    Requires:
-        - current_element is the first element type that appears in the critic2 output file 
     '''
     plt.rcParams.update({
         'font.family': 'sans-serif',

@@ -1,14 +1,13 @@
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools >= 77.0.3"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "pyvasptools"
-version = "0.0.4"
+version = "0.0.6"
 dependencies = [
-    "setuptools >= 77.0.3", 
-    "py4vasp >= 0.10.1",
-    "pymatgen >= 2025.5.1",     
+    "py4vasp",
+    "pymatgen",     
     "matplotlib >= 3.10.1", 
     "numpy >= 1.26.4",     
     "pandas >= 2.2.3", 
@@ -20,6 +19,13 @@ authors = [
   {name = "Agnes Katai", email = "agneskatai6@gmail.com"},
 ]
 readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
 
 [tool.setuptools.packages.find]
+where = ["src"]
 include = ["pyvasptools*"]

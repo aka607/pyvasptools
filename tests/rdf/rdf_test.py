@@ -1,5 +1,5 @@
-from pyvasptools.dataset import * 
-from pyvasptools.rdf.RDF import * 
+from src.pyvasptools.dataset import * 
+from src.pyvasptools.rdf.RDF import * 
 
 
 current_dir = Path(__file__).parent

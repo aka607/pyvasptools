@@ -1,5 +1,5 @@
-from pyvasptools.cohp.COHP_plot import *
-from pyvasptools.dataset import int_to_roman
+from src.pyvasptools.cohp.COHP_plot import *
+from src.pyvasptools.dataset import int_to_roman
 import matplotlib.pyplot as plt
 import numpy as np
 

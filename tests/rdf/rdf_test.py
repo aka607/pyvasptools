@@ -1,5 +1,5 @@
-from src.pyvasptools.dataset import * 
-from src.pyvasptools.rdf.RDF import * 
+from pyvasptools.dataset import * 
+from pyvasptools.rdf.RDF import * 
 
 
 current_dir = Path(__file__).parent
@@ -15,6 +15,6 @@ rdf([NbTaMoW_interface, NbTaMoWV_interface], Bond('F', 'F', 'blue'), Bond('Li', 
 
 
 # # metal only
-NbTaMoW = Dataset(path=root_dir / 'sample_data/NbTaMoW/10ps/DOS', ls='-', label='NbTaMoW')
-NbTaMoWV = Dataset(path=root_dir / 'sample_data/NbTaMoWV/10ps/DOS', ls='--', label='NbTaMoWV')
+NbTaMoW = Dataset(path=root_dir / 'sample_data/NbTaMoW/10ps/DOS', label='NbTaMoW')
+NbTaMoWV = Dataset(path=root_dir / 'sample_data/NbTaMoWV/10ps/DOS', lc='red', label='NbTaMoWV')
 rdf([NbTaMoW, NbTaMoWV], total_RDF=True, fig_name=current_dir / 'metal_surfaces_RDF', elements_to_plot=['Nb', 'Ta', 'Mo', 'W'])

@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 from py4vasp import Calculation
 import re
-from pyvasptools.compound import *
+from src.pyvasptools.compound import *
 
 from pathlib import Path
 

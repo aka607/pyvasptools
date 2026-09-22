@@ -4,8 +4,8 @@ from py4vasp import Calculation
 import numpy as np
 import diptest
 
-from pyvasptools.dataset import * 
-from pyvasptools.compound import * 
+from src.pyvasptools.dataset import * 
+from src.pyvasptools.compound import * 
 
 from pathlib import Path
 

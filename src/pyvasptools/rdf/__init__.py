@@ -1,3 +1,3 @@
 __all__ = ["RDF"]
 
-from . import RDF
+from pyvasptools.rdf import RDF

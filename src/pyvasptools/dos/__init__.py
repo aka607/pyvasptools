@@ -1,3 +1,3 @@
 __all__ = ["dos"]
 
-from . import dos
+from pyvasptools.dos import dos

@@ -23,10 +23,10 @@ import pandas as pd
 from pymatgen.io.lobster import Cohpcar
 import matplotlib.pyplot as plt
 import numpy as np
-from pyvasptools.compound import *
-from pyvasptools.dataset import *
+from src.pyvasptools.compound import *
+from src.pyvasptools.dataset import *
 
-from pyvasptools.convert_atom_ids import * 
+from src.pyvasptools.convert_atom_ids import * 
 
 
                 

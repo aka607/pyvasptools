@@ -156,7 +156,7 @@ def pdos_orbital(axes, elements_to_plot, energies, calc, d_orbitals, linecolor, 
                 dip_dataset[1][ii] = dip
                 dip_dataset[2][ii] = pval
             
-            axes[plot_no].plot(energies, element_spin_up, color=linecolor, linewidth=18, linestyle=d_orbitals[current_orbital], label=f'{current_orbital} - {label}')
+            axes[plot_no].plot(energies, element_spin_up, color=linecolor, linewidth=18, linestyle=d_orbitals[current_orbital], label=f'{current_orbital} {label}')
 
 
             if i == len(orbitals)-1:
@@ -245,7 +245,7 @@ def plot_pdos_modified(elements, d_orbitals, *dos_datasets, **kwargs):
             continue
 
         else:
-            axes[0].plot(energies, total_dos, color=dataset.lc, linewidth=18, linestyle=dataset.ls, label=f"Total - {dataset_labels[i]}")
+            axes[0].plot(energies, total_dos, color=dataset.lc, linewidth=18, linestyle=dataset.ls, label=f"Total {dataset_labels[i]}")
             axes[0].axvline(x=E_fermi, color=dataset.lc, linewidth=18, linestyle='--', label=f'$E_F$={E_fermi:.3f} eV')
             axes[0].text(0.80, 0.75, f'Total', transform=axes[0].transAxes, fontfamily='sans-serif', fontname='Helvetica', fontsize=180, color='black')
             axes[0].tick_params(axis='x', which='major', direction='out', length=33, width=10)  # Show ticks

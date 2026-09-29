@@ -7,7 +7,7 @@ current_dir = Path(__file__).parent
 root_dir = current_dir.parents[1]
 
 # NbTaMoW-FLiBe COHP analysis
-main_path = path=root_dir / 'sample_data/NbTaMoW-FLiBe'
+main_path = root_dir / 'sample_data/NbTaMoW-FLiBe'
 times = [10, 20]
 bonds = [Bond('Ta158', 'F45', 'blue'), Bond('Ta146', 'F88', 'red'), Bond('Nb138', 'F56', 'purple'), Bond('W160', 'F48', 'green')]
 

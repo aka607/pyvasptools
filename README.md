@@ -95,9 +95,47 @@ The script above produces the following plots (see `tests/dos/`):
 
 **3. Total DOS of NbTaMoW vs. NbTaMoWV**
 
+The solid black and purple lines represent the total DOS of the NbTaMoW and NbTaMoWV alloys, respectively. The dotted black and purple lines represent the Fermi level of the NbTaMoW and NbTaMoWV alloys, respectively.
+
 ![DOS of NbTaMoW vs NbTaMoWV](tests/dos/DOS_NbTaMoW_vs_NbTaMoWV.png)
 
 **4. Partial DOS of the NbTaMoW-FLiBe vs. NbTaMoWV-FLiBe interfaces**
 
+The solid blue line represents the DOS of the (100)-NbTaMoW–FLiBe interface, while the solid purple line represents the DOS of the (100)-NbTaMoWV–FLiBe interface. The dotted blue and purple vertical lines represent the Fermi level of the NbTaMoW and NbTaMoWV alloy with the added salt, respectively.
+
 ![Partial DOS of NbTaMoW vs NbTaMoWV](tests/dos/pDOS_NbTaMoW_vs_NbTaMoWV.png)
+
+## Example - Crystal Orbital Hamilton Population (COHP) analysis
+
+```python
+from pyvasptools.cohp.COHP_plot import *
+from pyvasptools.cohp.COHP_run import * 
+from pyvasptools.dataset import *
+
+
+current_dir = Path(__file__).parent
+root_dir = current_dir.parents[1]
+
+# NbTaMoW-FLiBe COHP analysis
+main_path = path=root_dir / 'sample_data/NbTaMoW-FLiBe'
+times = [10, 20]
+bonds = [Bond('Ta158', 'F45', 'blue'), Bond('Ta146', 'F88', 'red'), Bond('Nb138', 'F56', 'purple'), Bond('W160', 'F48', 'green')]
+
+updated_bonds_list = COHP_plots(main_path, times, bonds, label=True, fig_path=current_dir / "NbTaMoW-FLiBe")
+plot_bond_lengths(current_dir / "NbTaMoW-FLiBe", times, updated_bonds_list, file_name=current_dir / 'NbTaMoW-FLiBe')
+```
+
+The script above produces the following plots (see `tests/cohp/`):
+
+**1. COHP of selected bonds at 10 ps**
+
+![COHP of NbTaMoW-FLiBe at 10ps](<tests/cohp/NbTaMoW-FLiBe_10ps_COHP(e).png>)
+
+**2. COHP of selected bonds at 20 ps**
+
+![COHP of NbTaMoW-FLiBe at 20ps](<tests/cohp/NbTaMoW-FLiBe_20ps_COHP(e).png>)
+
+**3. Bond lengths across simulation times**
+
+![Bond lengths of NbTaMoW-FLiBe](tests/cohp/NbTaMoW-FLiBe_COHP_plot_all_times.png)
 

@@ -1,5 +1,4 @@
 from pymatgen.core.structure import Structure 
-
 from vasppy.rdf import RadialDistributionFunction
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker

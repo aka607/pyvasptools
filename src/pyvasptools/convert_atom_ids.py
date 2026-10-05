@@ -16,10 +16,10 @@ def get_vesta_atom_id(atom, poscar):
         - poscar is a valid POSCAR file 
     '''
 
-    poscar = open(poscar)
-    L = poscar.readlines()
+    with open(poscar) as f:
+        L = f.readlines()
 
-    # Determine order of the atoms in which they appear in POSCAR 
+    # Determine order of the atoms in which they appear in POSCAR
     ordered_atoms = " ".join(L[5:7]).split()
     N = len(ordered_atoms)//2
     ordered_atoms = np.array(ordered_atoms).reshape(2, N)
@@ -47,8 +47,8 @@ def get_cohp_atom_ids(poscar, *atom_ids):
 
     find_atom_IDs(Str Str) -> (dictof Str Str)
     '''
-    poscar = open(poscar)
-    L = poscar.readlines()
+    with open(poscar) as f:
+        L = f.readlines()
 
     # Determine order of the atoms
     ordered_atoms = " ".join(L[5:7]).split()

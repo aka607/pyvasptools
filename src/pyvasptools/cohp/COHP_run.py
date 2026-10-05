@@ -1,19 +1,25 @@
-from src.pyvasptools.cohp.COHP_plot import *
-from src.pyvasptools.dataset import int_to_roman
+import os
+
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 
+
+from pyvasptools.cohp.COHP_plot import plot_custom_bonds
+from pyvasptools.dataset import int_to_roman
 
 
 def COHP_plots(main_path, times, custom_bonds, label=False, fig_path='./'):
     '''
-    Generates COHP(e) plots for a specific set of bonds in custom_bonds that are listed at least once in any ICOHPLIST.lobster file as having a length of < 2 Angstroms. The main_path directory contains all data from electronic analyses 
+    Generates COHP(e) plots for a specific set of Bond in custom_bonds that are listed at least once in any ICOHPLIST.lobster file as having a length of < 2 Angstroms. The main_path directory contains all data from electronic analyses 
     conducted at each time in times, i.e., f'{main_path}/{t}ps/COHP-1-2' and f'{main_path}/{t}ps/COHP-2-3'. By default, the plots are not sequentially labelled with the designated timepoints 
     and the current working directory contains the necessary output data.
     
     Returns upgraded_bonds_list in which the atoms are formatted in VESTA format - out of the total number of each element type. 
 
-    COHP_plots(str, (listof Int), (listof Bond), Bool, Str, Str) -> (listof Bond)
+    COHP_plots(str, (listof Nat), (listof Bond), Bool, Str) -> (listof Bond)
+    Requires:
+        - For each t in times, main_path must contain a subfolder named '{t}ps' (e.g. '150ps').
     '''
     for i in range(len(times)):
         t = times[i]
@@ -25,7 +31,7 @@ def COHP_plots(main_path, times, custom_bonds, label=False, fig_path='./'):
         else:
             annotation = ''
         
-        upgraded_bonds_list = plot_specific_bonds(custom_bonds, path_1_2, path_2_3, annotation=annotation, fig_path=f'{fig_path}_{t}ps')
+        upgraded_bonds_list = plot_custom_bonds(custom_bonds, path_1_2, path_2_3, annotation=annotation, fig_path=f'{fig_path}_{t}ps')
 
     return upgraded_bonds_list
 
@@ -35,7 +41,7 @@ def plot_bond_lengths(read_csv_path, times, bonds, spin_up=True, file_name=''):
     '''
     Plots the bond length and ICOHP evolution with times for the specific bonds provided. It is recommended to plot in VESTA format and be consistent with the AtomID formatting.
 
-    plot_bond_lengths(Str, (listof Nat), (listof Bond), Bool, Str, Str) -> None
+    plot_bond_lengths(Str, (listof Nat), (listof Bond), Bool, Str) -> None
     '''
     plt.rcParams.update({
     'font.family': 'sans-serif',
@@ -66,13 +72,15 @@ def plot_bond_lengths(read_csv_path, times, bonds, spin_up=True, file_name=''):
     for t in times:
 
         dataset = pd.read_csv(f'{read_csv_path}_{t}ps_COHP_data.csv')
-        metal_arr = dataset.iloc[:, 3].values
+        halide_arr = dataset.iloc[:, 2].values   # atom1 column (halide/oxygen)
+        metal_arr = dataset.iloc[:, 3].values    # atom2 column (metal)
 
         for bond in bonds:
-            metal = bond.atom1
+            # Match on both atoms so a metal bonded to several halides maps to the right row.
+            matches = np.nonzero((metal_arr == bond.atom1) & (halide_arr == bond.atom2))[0]
 
-            if metal in list(metal_arr):
-                ind = list(metal_arr).index(metal)
+            if len(matches):
+                ind = matches[0]
                 bond_length = dataset.iloc[ind, 4]
                 icohp = dataset.iloc[ind, icohp_index]
             else:
@@ -110,7 +118,7 @@ def plot_bond_lengths(read_csv_path, times, bonds, spin_up=True, file_name=''):
     axes[1].set_xlabel("Time (ps)")
     axes[1].set_ylabel('ICOHP (eV)')
 
-    fig.savefig(f'{file_name}_COHP_plot_all_times')
-
     fig.subplots_adjust(left=0.07, right=0.85, wspace=0.25)  # default left ~0.125
+
+    fig.savefig(f'{file_name}_COHP_plot_all_times')
     plt.show()

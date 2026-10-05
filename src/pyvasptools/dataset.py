@@ -1,12 +1,14 @@
+from pathlib import Path
+import re
+
+
 import pandas as pd 
 import matplotlib.colors as mcolors
 import matplotlib.pyplot as plt 
-
 from py4vasp import Calculation
-import re
-from src.pyvasptools.compound import *
 
-from pathlib import Path
+
+from pyvasptools.compound import periodic_table 
 
 
 def get_letters_only(s):

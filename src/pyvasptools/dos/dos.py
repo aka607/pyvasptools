@@ -1,13 +1,12 @@
-import matplotlib.pyplot as plt
+from pathlib import Path
 
+
+import matplotlib.pyplot as plt
 from py4vasp import Calculation
 import numpy as np
 import diptest
 
-from src.pyvasptools.dataset import * 
-from src.pyvasptools.compound import * 
-
-from pathlib import Path
+from pyvasptools.compound import periodic_table
 
 
 

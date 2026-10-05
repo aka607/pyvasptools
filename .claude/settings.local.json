@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(twine upload *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" https://pypi.org/project/pyvasptools/0.0.8/)",
+      "Bash(rm -rf dist/)",
+      "Bash(python -m build)",
+      "Bash(twine check *)",
+      "Bash(python -c \"import ast,sys; [ast.parse\\(open\\(f\\).read\\(\\), f\\) for f in sys.argv[1:]]\" src/pyvasptools/**/*.py src/pyvasptools/*.py)",
+      "Bash(python -c \"import pyvasptools.dos.dos\")"
+    ]
+  }
+}

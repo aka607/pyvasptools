@@ -1,6 +1,9 @@
-from pyvasptools.dataset import *
-from pyvasptools.dos.dos import *  
-from pyvasptools.compound import * 
+from pathlib import Path
+
+
+from pyvasptools.dataset import Dataset
+from pyvasptools.dos.dos import plot_multi_overlaid_dos, plot_pdos_modified
+
 
 current_dir = Path(__file__).parent
 root_dir = current_dir.parents[1]

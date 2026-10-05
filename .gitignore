@@ -80,3 +80,6 @@ Thumbs.db
 
 # Large VASP sample outputs (not for version control)
 sample_data/
+
+# Claude Code
+.claude/

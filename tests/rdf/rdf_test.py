@@ -1,5 +1,8 @@
-from pyvasptools.dataset import * 
-from pyvasptools.rdf.RDF import * 
+from pathlib import Path
+
+
+from pyvasptools.dataset import Dataset, Bond 
+from pyvasptools.rdf.RDF import rdf
 
 
 current_dir = Path(__file__).parent

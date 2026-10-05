@@ -1,5 +1,7 @@
-from pyvasptools.dataset import * 
-from pyvasptools.critic2.critic2 import * 
+from pathlib import Path
+
+
+from pyvasptools.critic2.critic2 import plot_critic_over_timesteps
 
 
 current_dir = Path(__file__).parent

@@ -1,6 +1,8 @@
-from pyvasptools.cohp.COHP_plot import *
-from pyvasptools.cohp.COHP_run import * 
-from pyvasptools.dataset import *
+from pathlib import Path
+
+
+from pyvasptools.cohp.COHP_run import COHP_plots, plot_bond_lengths
+from pyvasptools.dataset import Bond 
 
 
 current_dir = Path(__file__).parent

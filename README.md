@@ -58,24 +58,25 @@ from pathlib import Path
 from pyvasptools.dataset import Dataset
 from pyvasptools.dos.dos import plot_multi_overlaid_dos, plot_pdos_modified
 
+
 current_dir = Path(__file__).parent
 root_dir = current_dir.parents[1]
 
-# 1. Sample data set 1: Compare the density of states of two (100)-NbTaMoW and (100)-NbTaMoWV slabs 
+
+# Sample data set 1: Compare the total density of states of two (100)-NbTaMoW and (100)-NbTaMoWV slabs
+# after 10 ps of ab initio molecular dynamics (AIMD) simulation at 800 K.  
 NbTaMoW = Dataset(path=root_dir / 'sample_data/NbTaMoW/10ps/DOS', lc='black', label='NbTaMoW')
 NbTaMoWV = Dataset(path=root_dir / 'sample_data/NbTaMoWV/10ps/DOS', lc='purple', label='NbTaMoWV')
 
-# 1. Plot the total density of states of a single (100)-NbTaMoW alloy
+# 1. Plot the total density of states of a single (100)-NbTaMoW alloy. 
 NbTaMoW.plot_total_DOS(output_dir=current_dir, output_name='DOS_NbTaMoW')
-# 2. Zoom in near the Fermi level (zoom_in=True)
+# 2. Zoom in near the Fermi level (zoom_in=True) The DOS near the Fermi level is of significance due to its correlation with bonding and material properties.
 NbTaMoW.plot_total_DOS(output_dir=current_dir, zoom_in=True, output_name='DOS_NbTaMoW_Fermi')
 
-# 3. Compare the density of states of two (100)-NbTaMoW and (100)-NbTaMoWV slabs. zoom_in=True zooms in close to the Fermi level. 
+# 3. Compare the total density of states of two (100)-NbTaMoW and (100)-NbTaMoWV slabs. zoom_in=True zooms in close to the Fermi level. 
 plot_multi_overlaid_dos(NbTaMoW, NbTaMoWV, zoom_in=True, output_dir=current_dir, output_name='DOS_NbTaMoW_vs_NbTaMoWV')
 
-
-
-# 3. Now compare the partial density of states of a NbTaMoW-H2O-FLiBe and NbTaMoWV-H2O-FLiBe interface. 
+# 4. Now compare the partial density of states of the salt-alloy interface, specifically the interface between NbTaMoW and 2LiF-BeF2 and NbTaMoWV and 2LiF-BeF2. 
 elements = ['Nb', 'Ta', 'Mo', 'W', 'F']
 
 NbTaMoW = Dataset(path=root_dir / 'sample_data/NbTaMoW-FLiBe/10ps/DOS', lc="blue", ls="solid", label=f'')
@@ -140,4 +141,45 @@ The script above produces the following plots (see `tests/cohp/`):
 **3. Bond lengths across simulation times**
 
 ![Bond lengths of NbTaMoW-FLiBe](tests/cohp/NbTaMoW-FLiBe_COHP_plot_all_times.png)
+
+## Example - Radial Distribution Function (RDF) analysis
+
+```python
+from pathlib import Path
+
+from pyvasptools.dataset import Dataset, Bond
+from pyvasptools.rdf.RDF import rdf
+
+
+current_dir = Path(__file__).parent
+root_dir = current_dir.parents[1]
+
+# 1. Compare the radial distribution function of the NbTaMoW-FLiBe and NbTaMoWV-FLiBe interfaces
+NbTaMoW_interface = Dataset(path=root_dir / 'sample_data/NbTaMoW-FLiBe/10ps/DOS', ls='-', label='NbTaMoW')
+NbTaMoWV_interface = Dataset(path=root_dir / 'sample_data/NbTaMoWV-FLiBe/10ps/DOS', ls='--', label='NbTaMoWV')
+
+# Selected bonds overlaid on a single plot
+rdf([NbTaMoW_interface, NbTaMoWV_interface], Bond('F', 'F', 'blue'), Bond('Li', 'F', 'red'), Bond('Be', 'F', 'green'), fig_name=current_dir / 'RDF')
+# Same bonds, one subplot per bond (same_plot=False)
+rdf([NbTaMoW_interface, NbTaMoWV_interface], Bond('F', 'F', 'blue'), Bond('Li', 'F', 'red'), Bond('Be', 'F', 'green'), same_plot=False, fig_name=current_dir / 'RDF_separate_plots')
+
+# 2. Total RDF of the metal surfaces in vacuum (total_RDF=True restricts to the listed elements)
+NbTaMoW = Dataset(path=root_dir / 'sample_data/NbTaMoW/10ps/DOS', label='NbTaMoW')
+NbTaMoWV = Dataset(path=root_dir / 'sample_data/NbTaMoWV/10ps/DOS', lc='red', label='NbTaMoWV')
+rdf([NbTaMoW, NbTaMoWV], total_RDF=True, fig_name=current_dir / 'metal_surfaces_RDF', elements_to_plot=['Nb', 'Ta', 'Mo', 'W'])
+```
+
+The script above produces the following plots (see `tests/rdf/`):
+
+**1. RDF of selected bonds, overlaid on a single plot**
+
+![RDF of NbTaMoW vs NbTaMoWV](tests/rdf/RDF.png)
+
+**2. Same bonds, one subplot per bond**
+
+![RDF of NbTaMoW vs NbTaMoWV, separate plots](tests/rdf/RDF_separate_plots.png)
+
+**3. Total RDF of the bare metal surfaces**
+
+![Total RDF of the metal surfaces](tests/rdf/metal_surfaces_RDF.png)
 

@@ -76,12 +76,12 @@ NbTaMoW.plot_total_DOS(output_dir=current_dir, zoom_in=True, output_name='DOS_Nb
 # 3. Compare the total density of states of two (100)-NbTaMoW and (100)-NbTaMoWV slabs. zoom_in=True zooms in close to the Fermi level. 
 plot_multi_overlaid_dos(NbTaMoW, NbTaMoWV, zoom_in=True, output_dir=current_dir, output_name='DOS_NbTaMoW_vs_NbTaMoWV')
 
-# 4. Now compare the partial density of states of the salt-alloy interface, specifically the interface between NbTaMoW and 2LiF-BeF2 and NbTaMoWV and 2LiF-BeF2. 
-elements = ['Nb', 'Ta', 'Mo', 'W', 'F']
 
+# Sample data set 2: Compare the partial density of states of the salt-alloy interface, specifically the interface between NbTaMoW and 2LiF-BeF2 and NbTaMoWV and 2LiF-BeF2 after 10 ps of ab initio molecular dynamics (AIMD) simulation at 800 K. 
 NbTaMoW = Dataset(path=root_dir / 'sample_data/NbTaMoW-FLiBe/10ps/DOS', lc="blue", ls="solid", label=f'')
 NbTaMoWV = Dataset(path=root_dir / 'sample_data/NbTaMoWV-FLiBe/10ps/DOS', lc="purple", ls="solid", label=f'- V')
 
+elements = ['Nb', 'Ta', 'Mo', 'W', 'F']
 plot_pdos_modified(elements, {'d': 'solid', 'p': 'dashed', 's': 'dotted'}, NbTaMoW, NbTaMoWV, x_lim=(-10, 10), y_lim=(((-5, 100),) + ((-1, 20),) * 4 + ((-5, 50),)), labels=("", "- V"), path_to_fig=current_dir / 'pDOS_NbTaMoW_vs_NbTaMoWV')
 ```
 

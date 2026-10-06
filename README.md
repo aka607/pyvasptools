@@ -53,9 +53,10 @@ unzip sample_data.zip
 ## Example - Density of States calculated from ab initio molecular dynamics (AIMD) simulation VASP output files 
 
 ```python
-from pyvasptools.dataset import *
-from pyvasptools.dos.dos import *  
-from pyvasptools.compound import * 
+from pathlib import Path
+
+from pyvasptools.dataset import Dataset
+from pyvasptools.dos.dos import plot_multi_overlaid_dos, plot_pdos_modified
 
 current_dir = Path(__file__).parent
 root_dir = current_dir.parents[1]
@@ -108,9 +109,10 @@ The solid blue line represents the DOS of the (100)-NbTaMoW–FLiBe interface, w
 ## Example - Crystal Orbital Hamilton Population (COHP) analysis
 
 ```python
-from pyvasptools.cohp.COHP_plot import *
-from pyvasptools.cohp.COHP_run import * 
-from pyvasptools.dataset import *
+from pathlib import Path
+
+from pyvasptools.cohp.COHP_run import COHP_plots, plot_bond_lengths
+from pyvasptools.dataset import Bond
 
 
 current_dir = Path(__file__).parent

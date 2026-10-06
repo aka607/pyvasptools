@@ -70,7 +70,7 @@ NbTaMoWV = Dataset(path=root_dir / 'sample_data/NbTaMoWV/10ps/DOS', lc='purple',
 
 # 1. Plot the total density of states of a single (100)-NbTaMoW alloy. 
 NbTaMoW.plot_total_DOS(output_dir=current_dir, output_name='DOS_NbTaMoW')
-# 2. Zoom in near the Fermi level (zoom_in=True) The DOS near the Fermi level is of significance due to its correlation with bonding and material properties.
+# 2. Zoom in near the Fermi level (zoom_in=True). The DOS near the Fermi level is of significance due to its correlation with bonding and material properties.
 NbTaMoW.plot_total_DOS(output_dir=current_dir, zoom_in=True, output_name='DOS_NbTaMoW_Fermi')
 
 # 3. Compare the total density of states of two (100)-NbTaMoW and (100)-NbTaMoWV slabs. zoom_in=True zooms in close to the Fermi level. 
